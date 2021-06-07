@@ -3,6 +3,7 @@ A Command Line based chat tool in Python using Socket Programming and Multi Thre
 
 ## Requirements
 - Python 3
+- Linux/Ubuntu OS, (Not Supported in Windows)
 
 ## Super Easy Installation
 
