@@ -2,6 +2,9 @@ import socket
 import sys
 import select
 import pickle
+from _thread import *
+import threading 
+
 
 def list_rooms(rooms_list):
     if len(rooms_list)!= 0:
@@ -69,32 +72,32 @@ def main():
                 print(f"Joining Room No : {room_number}, DAATEBAYO!") 
                 print("")
                 
-                welcome_message  = s.recv(1024).decode()
-                print(welcome_message)
-                print("")
+            welcome_message  = s.recv(1024).decode()
+            print(welcome_message)
+            print("")
 
         
-                while True:
-                    sockets_list = [sys.stdin, s] 
-                    read_sockets, write_socket, error_socket = select.select(sockets_list,[],[])
-                    
-                    for socks in read_sockets:
-                        if socks == s:
-                            message  = socks.recv(1024).decode()
-                            sys.stdout.write(message)
-                            print("")
-                            sys.stdout.flush()
+            while True:
+                sockets_list = [sys.stdin, s] 
+                read_sockets, write_socket, error_socket = select.select(sockets_list,[],[])
+                
+                for socks in read_sockets:
+                    if socks == s:
+                        message  = socks.recv(1024).decode()
+                        sys.stdout.write(message)
+                        print("")
+                        sys.stdout.flush()
 
-                        else: 
-                            message = sys.stdin.readline()
-                            if message.strip() == '/q':
-                                    print("**BBYE**")
-                                    quit()
+                    else: 
+                        message = sys.stdin.readline()
+                        if message.strip() == '/q':
+                                print("**BBYE**")
+                                quit()
 
-                            else:
-                                s.send(bytes(message,'utf-8'))  
-                            print("")    
-                            sys.stdout.flush()
+                        else:
+                            s.send(bytes(message,'utf-8'))  
+                        print("")    
+                        sys.stdout.flush()
                     
                 s.close()
             else:

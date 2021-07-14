@@ -3,6 +3,7 @@ import socket
 from _thread import *
 import threading
 import pickle
+import time
 
 # Globally storing in main thread heap
 list_of_clients = {}
@@ -51,7 +52,7 @@ def multi_threaded_client(c,addr):
                 room_number = c.recv(1024).decode()
                 success = join_room(room_number,addr)
                 c.send(bytes(str(success),'utf-8'))
-                
+                time.sleep(1)
                 if success == True:
                     c.send(bytes(f"Welcome to chatroom {room_number}! {name_data}",'utf-8'))
 
@@ -127,6 +128,7 @@ def main():
     s.listen(15)
 
     while True:
+        print("Server started what to do now?")
         c,addr =  s.accept()
         threading.Lock().acquire()
         print(f"Connected to {addr}")
