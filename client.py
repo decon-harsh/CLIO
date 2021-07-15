@@ -80,6 +80,9 @@ def main():
             while True:
                 sockets_list = [sys.stdin, s] 
                 read_sockets, write_socket, error_socket = select.select(sockets_list,[],[])
+                # print(read_sockets)
+                # print(write_socket)
+                # print(error_socket)
                 
                 for socks in read_sockets:
                     if socks == s:
@@ -99,7 +102,7 @@ def main():
                         print("")    
                         sys.stdout.flush()
                     
-                s.close()
+            
             else:
                 print("Enter a valid Room No, DATTEBAYO!")
                 print("")
