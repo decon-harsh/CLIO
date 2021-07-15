@@ -63,5 +63,5 @@ Use ```/q``` to end the chat
 
 
 - Thank you for comming to my project. 
-- More features to come! Currently under construction!
+- More features to come! Currently under construction, Stay Updated!
 
