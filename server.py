@@ -1,7 +1,6 @@
 from os import remove
 import socket
 from _thread import *
-import threading
 import pickle
 import time
 
@@ -42,9 +41,6 @@ def multi_threaded_client(c,addr):
     while True:
         try:
             data = c.recv(1024).decode()
-            
-            # TODO
-
                         
             if data and data=="JOIN":
                 global room_list
@@ -83,14 +79,14 @@ def multi_threaded_client(c,addr):
                 new_room_num = create_room()
                 c.send(bytes(new_room_num,'utf-8'))
             
+            elif data=="CONTINUE":
+                continue
+
             else:
-                threading.Lock().release()
                 break
         
         except error as e:
             print(e)
-            # Release lock at last
-            threading.Lock().release()
 
 # Helper Functions
 def broadcast(message,c,room_number,addr):
@@ -127,10 +123,9 @@ def main():
         print(str(e))
     s.listen(15)
 
+    print("Server started what to do now?")
     while True:
-        print("Server started what to do now?")
         c,addr =  s.accept()
-        threading.Lock().acquire()
         print(f"Connected to {addr}")
         list_of_clients[addr]=c
         start_new_thread(multi_threaded_client,(c,addr))
