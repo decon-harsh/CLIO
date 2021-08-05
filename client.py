@@ -9,7 +9,7 @@ import time
 import click
 import emoji
 
-width = click.get_terminal_size()[0]
+
 
 def list_rooms(rooms_list):
     if len(rooms_list)!= 0:
@@ -90,6 +90,7 @@ def main():
                     for socks in read_sockets:
                         if socks == s:
                             message  = emoji.emojize(socks.recv(1024).decode())
+                            width = click.get_terminal_size()[0]
                             print(' '*(width - len(message)),end="")
                             sys.stdout.write(Fore.RED + message)
                             print(Fore.WHITE+"")
