@@ -62,6 +62,12 @@ Use ```/q``` to end the chat
 ![Screenshot from 2021-07-15 22-35-34](https://user-images.githubusercontent.com/58214248/125829132-95d0668f-042e-4116-9818-e24eed77b4ac.png)
 
 
+# New features added
+1. Emoji support
+2. Sender's and reciever's text in different color.
+3. Alignment changed 
+4. Error catching
+ 
 - Thank you for comming to my project. 
 - More features to come! Currently under construction, Stay Updated!
 
